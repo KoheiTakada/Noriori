@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generated. Edit design/tokens.json. -->
+<resources>
+    <color name="ds_canvas">#F7F9FC</color>
+    <color name="ds_surface">#FFFFFF</color>
+    <color name="ds_ink">#17212F</color>
+    <color name="ds_muted">#526174</color>
+    <color name="ds_primary">#175CDA</color>
+    <color name="ds_danger">#B3261E</color>
+    <color name="brand_primary">@color/ds_primary</color>
+    <color name="surface">@color/ds_canvas</color>
+    <color name="text_primary">@color/ds_ink</color>
+    <color name="status_warning">@color/ds_danger</color>
+</resources>

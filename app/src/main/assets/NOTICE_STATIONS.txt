@@ -1,0 +1,10 @@
+Station data: Ministry of Land, Infrastructure, Transport and Tourism, Japan.
+National Land Numerical Information, Railway Data N02, 2025 edition.
+https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-N02-2025.html
+Data date: 2025-12-31. Published: 2026-04.
+License: Creative Commons Attribution 4.0 International.
+https://creativecommons.org/licenses/by/4.0/
+Modified: station platforms are converted to representative midpoint coordinates,
+grouped by the official station group code, with merged railway names.
+
+線路形状: 同じ国土数値情報 鉄道データ2025年度。5m以内で簡略化し、450m以下の区間へ分割。CC BY 4.0。

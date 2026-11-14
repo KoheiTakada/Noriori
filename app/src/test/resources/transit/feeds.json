@@ -1,0 +1,19 @@
+{
+  "feeds": [
+    {
+      "feedId": "tokyo-tobu-rail-part-02",
+      "version": "fb6f5869d0f22207",
+      "fetchedAt": "2026-07-03T13:03:13.552Z",
+      "name": "東武鉄道（TokyoGTFS由来） TJ",
+      "license": "MIT (mini-tokyo-3d)",
+      "attribution": "Copyright (c) 2019-2025 Akihiko Kusanagi (mini-tokyo-3d) / TokyoGTFS",
+      "catalog": "manual",
+      "country": "JP",
+      "downloadUrl": "",
+      "warningCount": 0,
+      "serviceStart": "20260618",
+      "serviceEnd": "20270618",
+      "stale": false
+    }
+  ]
+}
