@@ -26,11 +26,8 @@ android {
                 keyPassword 'android'
             }
         }
-    }
-
-    // Release builds are signed with the same persistent keystore as previous installed APKs.
-    // Never commit this keystore to the repository.
-    signingConfigs {
+        
+        // Keep the keystore private and stable across releases to preserve in-place updates.
         release {
             def keystore = System.getenv('NORIORI_RELEASE_KEYSTORE_PATH')
             if (keystore) {
