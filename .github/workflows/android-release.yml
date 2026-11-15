@@ -69,7 +69,13 @@ jobs:
         run: |
           APK=app/build/outputs/apk/release/app-release.apk
           test -s "$APK"
-          "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --verbose --print-certs "$APK"
+          "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --verbose --print-certs "$APK" | tee "$RUNNER_TEMP/apk-signature.txt"
+          CERT_SHA256=$(awk -F ': ' '/Signer #1 certificate SHA-256 digest:/ {print toupper($2)}' "$RUNNER_TEMP/apk-signature.txt")
+          EXPECTED_CERT_SHA256="0D680E2FB1C65BA2B037FE26F94306F7355D7C16512AE518FCCF9B859248DB0D"
+          if [ "$CERT_SHA256" != "$EXPECTED_CERT_SHA256" ]; then
+            echo "::error::APK certificate mismatch. Use the signing keystore already used by Noriori v0.9.11."
+            exit 1
+          fi
           sha256sum "$APK"
 
       - name: Publish GitHub Release
@@ -80,8 +86,8 @@ jobs:
           test -n "$VERSION"
           TAG="v$VERSION"
           if gh release view "$TAG" >/dev/null 2>&1; then
-            echo "::error::Release $TAG already exists. Increase versionCode and versionName before publishing a new update."
-            exit 1
+            echo "Release $TAG already exists; nothing new to publish. Increase versionCode and versionName for the next update."
+            exit 0
           fi
           gh release create "$TAG" "app/build/outputs/apk/release/app-release.apk#Noriori-$TAG.apk" \
             --target "$GITHUB_SHA" \
