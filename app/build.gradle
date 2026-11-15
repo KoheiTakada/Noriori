@@ -11,8 +11,8 @@ android {
         applicationId 'jp.kohei.norisugoshi.guard'
         minSdk 29
         targetSdk 35
-        versionCode 26
-        versionName '0.9.11'
+        versionCode 27
+        versionName '0.9.12'
 
         testInstrumentationRunner 'android.test.InstrumentationTestRunner'
     }
@@ -28,8 +28,25 @@ android {
         }
     }
 
+    // Release builds are signed with the same persistent keystore as previous installed APKs.
+    // Never commit this keystore to the repository.
+    signingConfigs {
+        release {
+            def keystore = System.getenv('NORIORI_RELEASE_KEYSTORE_PATH')
+            if (keystore) {
+                storeFile file(keystore)
+                storePassword System.getenv('NORIORI_RELEASE_STORE_PASSWORD') ?: 'android'
+                keyAlias System.getenv('NORIORI_RELEASE_KEY_ALIAS') ?: 'androiddebugkey'
+                keyPassword System.getenv('NORIORI_RELEASE_KEY_PASSWORD') ?: 'android'
+            }
+        }
+    }
+
     buildTypes {
         release {
+            if (System.getenv('NORIORI_RELEASE_KEYSTORE_PATH')) {
+                signingConfig signingConfigs.release
+            }
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
